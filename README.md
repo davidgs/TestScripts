@@ -211,6 +211,15 @@ If you then start a process instance in your C8 cluster, the Node.js task worker
 
 > **Note:** Moke sure you stop the Go task worker before starting the Node.js task worker as you don't want the 2 task workers fighting over jobs.
 
+
+## The Java Client
+
+**NEEDS TO BE FILLED IN**
+
+## The .Net (C#) Client
+
+**Needs to be filled in**
+
 ## Conclusions
 
 You can see how having some simple task workers to do jobs that you may repeat can be very useful. With this `DoMathTask` worker, I can send it 2 numbers and it will return the sum. You can compare between the various languages to see how each one performs the same task.
