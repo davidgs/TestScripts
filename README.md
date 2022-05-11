@@ -4,7 +4,7 @@ With Camunda Platform 7 it was possible to embed JavaScript directly within your
 
 While this was not necessarily a 'best practice' and could make maintainability more difficult, it was a quick and easy way to have a simple script worker task that could perform some basic functions.
 
-With Camunda Platform 8 (C9) this is no longer a possibility. There is no way to embed scripts in your models, so you'll need to come up with another way to handle these simple tasks.
+With Camunda Platform 8 (C8) this is no longer a possibility. There is no way to embed scripts in your models, so you'll need to come up with another way to handle these simple tasks.
 
 ## Some Examples
 
