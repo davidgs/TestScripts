@@ -1,0 +1,22 @@
+{
+  "name": "camunda-platform-get-started",
+  "version": "1.0.0",
+  "description": "Camunda Platform 8 Script Workers",
+  "main": "test-script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidgs/test-scripts.git"
+  },
+  "author": "David G. Simmons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidgs/test-scripts/issues"
+  },
+  "homepage": "https://github.com/davidgs/test-scripts#readme",
+  "dependencies": {
+    "zeebe-node": "^8.0.1"
+  }
+}
