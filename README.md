@@ -32,130 +32,15 @@ Now, on to the actual task workers.
 
 ## Supported languages
 
-Camunda has 2 officially supported languages, as well as a number of community supported languages, that you can use to connect to C8. We have provided 3 example task workers, one in Go, one in Java, and one in Node.js. Each of these task workers does the exact same thing. They will listen for the `DoMathTask` as defined in the process model, and execute that task with the variables given.
+Camunda has 2 officially supported languages, as well as a number of community supported languages, that you can use to connect to C8. We have provided 4 example task workers, one in Go, one in Java, one in C#, and one in Node.js. Each of these task workers does the exact same thing. They will listen for the `DoMathTask` as defined in the process model, and execute that task with the variables given.
 
-## The Go Task Worker
+## [ The Go Task Worker](Golang/README.md)
 
-The second officially supported language is Go, so we are providing an example of the task worker in Go. It will do *exactly* what the Java example did.
+## [ The Java Task Worker](Java/README.md)
 
-First, we need to import the required libraries:
+## [ The C# Task Worker](CSharp/README.md)
 
-```go
-  "github.com/camunda-cloud/zeebe/clients/go/pkg/entities"
-  "github.com/camunda-cloud/zeebe/clients/go/pkg/worker"
-  "github.com/camunda-cloud/zeebe/clients/go/pkg/zbc"
-```
-
-Next, we will define the task that we will execute:
-
-```go
-// Set this to the name of your task
-const PROC_NAME = "DoMathTask"
-
-// Set this to `false` to stop output to the terminal
-const DEBUG = true
-```
-
-You can turn off all output by setting `DEBUG` to `false` here as well.
-
-Next, we create a `client` that will connect to our C8 cluster:
-
-```go
-zeebeAddress := os.Getenv("ZEEBE_ADDRESS")
-	if zeebeAddress == "" {
-		panic(fmt.Errorf("ZEEBE_ADDRESS is not set"))
-	}
-	client, err := zbc.NewClient(&zbc.ClientConfig{
-		GatewayAddress: zeebeAddress,
-	})
-	if err != nil {
-		log.Fatal("Failed to create client")
-		panic(err)
-	}
-  ```
-
-  To run this task worker, you will have to set the environment variables for your C8 cluster in order for the client to be able to connect, then build and execute the worker.
-
-  ```shell
-  % export ZEEBE_ADDRESS=YOUR_CLUSTER.bru-2.zeebe.camunda.io:443
-  % export ZEEBE_CLIENT_ID=YOUR_CLIENT_ID
-  % export ZEEBE_CLIENT_SECRET=YOUR_CLIENT_SECRET
-  % go mod init do-math-task
-  % go mod tidy
-  % ./do-math-task
-  ```
-
-  The task worker will pick those up and use them to create the client instance and connect it to your cluster.
-
-  Finally, a `JobWorker` is started that will listen for, and execute, the `DoMathTask` tasks as they come in. In the configuration provided the `do-math`task` worker will run continuously, waiting for new `DoMathTask` jobs to arrive and handling them as they do.
-
-  ```go
-  // Start the job worker to handle jobs
-	// This will wait for tasks to be available
-	jobWorker := client.NewJobWorker().JobType(PROC_NAME).Handler(a.handleC8Job).Open()
-
-	<-readyClose
-	jobWorker.Close()
-	jobWorker.AwaitClose()
-	return nil
-  ```
-
-  We have provided a handle to a function `handleC8Job` that will be called each time a new task is created.
-
-  ```go
-// Here's where we handle incoming script task jobs.
-func (a *App) handleC8Job(client worker.JobClient, job entities.Job) {
-	dPrintln("handleC8Job")
-	jobKey := job.GetKey()
-	_, err := job.GetCustomHeadersAsMap()
-	if err != nil {
-		// failed to handle job as we require the custom job headers
-		failJob(client, job)
-		return
-	}
-	jobVars := JobVars{}
-	err = job.GetVariablesAs(&jobVars)
-	if err != nil {
-		failJob(client, job)
-		return
-	}
-	dPrintf("%+v\n", jobVars)
-
-	// This is a simple script. We add the two values and return the result.
-	jobVars.Count = jobVars.Count + jobVars.Add
-	dPrintf("%+v\n", jobVars)
-	request, err := client.NewCompleteJobCommand().JobKey(jobKey).VariablesFromObject(jobVars)
-	if err != nil {
-		// failed to set the updated variables
-		failJob(client, job)
-		return
-	}
-	dPrintln("Complete job", jobKey, "of type", job.Type)
-	ctx := context.Background()
-	_, err = request.Send(ctx)
-	if err != nil {
-		panic(err)
-	}
-	dPrintln("Successfully completed job")
-}
-```
-
-At the bottom of the file are some helper functions for debug printing, and for handling the failure to execute the job, but we won't go through them here.
-
-The really important parts of the `handleC8Job` function are the gathering of the process variables `count` and `add` and then the return of the newly updated variables after we have performed the addition.
-
-If we run this process with no changes, we should end up with a `count` of 9 at the end. (0 + 0 + 4 + 5 = 9)
-
-One thing to note here is that, if you add a start variable json when you start your process instance, that will be executed just as you'd expect. So if we include:
-
-```json
-{
-  "count": 2,
-  "add": 2
-}
-```
-
-When we start the process, we should end up with 13 at the end (2 + 2 + 4 + 5 = 13).
+## [ The NodeJS Task Worker](NodeJS/README.md)
 
 ## The Node.js client
 
@@ -214,7 +99,7 @@ If you then start a process instance in your C8 cluster, the Node.js task worker
 
 ## The Java Client
 
-**NEEDS TO BE FILLED IN**
+
 
 ## The .Net (C#) Client
 

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Dot Net",
+  "steps": [
+    {
+      "file": "C-Sharp/README.md",
+      "description": "If all you're interested in is a high-level overview of everything, this [README](./README.md) should probably be enough to get you started. \n\nIf you're interested in how the code works and how it's structured, continue this tour. ",
+      "line": 3
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "We need to import the proper Zeebe libraries first, of course.",
+      "line": 24
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "As with the other examples, we will define a constant for the name of the tasks that we will be executing. \n\nIf you're using the included `test-script-worker.bpmn` file, you shouldn't need to change anything here or in that file for this example to run.",
+      "line": 33
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "We will add our machine's name to the logs. ",
+      "line": 34
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "We will also use a logger to format the output from this worker. ",
+      "line": 36
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "The first thing we need to do in the `main` function is to initialize a Zeebe client. This client depends on you having already set the proper environment variables. \n\nFor review, you should set the following environment variables in your terminal prior to running this program:\n\n```shell\n% export ZEEBE_ADDRESS=YOUR_ZEEBE_ADDRESS\n% export ZEEBE_CLIENT_ID=YOUR_CLIENT_ID\n% export ZEEBE_CLIENT_SECRET=YOUR_CLIENT_SECRET\n```\n\nYou can get those values from your [Camunda Platform 8](https://accounts.cloud.camunda.io/signup?utm_medium=referral&utm_source=github&utm_content=devrel-team-post&utm_term=david_simmons) credentials.",
+      "line": 41
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "Here is where we take the client and set all the properties so that it will execute the proper tasks. We pass it the `JobType` which we defined as the constant above. \n\nWe also set some other properties like `PollInterval`, `PollingTimeout`, etc. that we didn't set for other clients. We could have, but we didn't. We are doing it here as an example. ",
+      "line": 48
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "This is a blocking call which will wait until the worker has run.",
+      "line": 62
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "This is where the actual job gets done. As in the other examples, this is called by the main process and passes in the `job` and the `jobClient` which we will need in order to actually complete the work.",
+      "line": 66
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "We load the variables that are passed in, if any. \n\nIf you remember, we may or may not actually have variables passed in, but we are absolutely going to need at least the `count` and `add` variables in order to complete the work.",
+      "line": 70
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "Here we deserialize the JSON object containing the variables according to the `Calculation` object.",
+      "line": 73
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "This internal class defines the variables we are expecting in the incoming JSON object, as well as what to actually *do* with them once we have them.",
+      "line": 82
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "We call the `AddToCount()` method of the `Calculation` object in order to get the answer we will return to the calling process.",
+      "line": 74
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "We aren't doing 🚀 science here, we are simply adding 2 numbers together. ",
+      "line": 91
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "Once we have the result of the calculation we re-serialize the object in order to return the variables to the process.",
+      "line": 75
+    },
+    {
+      "file": "C-Sharp/test-script.cs",
+      "description": "Just as in the other examples, we complete the job. The job completion is identified by the job key, and we return the results of our calculation to the process. \n\nUsing the `await` keyword here allows this to happen in the background and not block while we submit the job completion. \n\nAnd that's the end of the .Net process.",
+      "line": 78
+    }
+  ],
+  "ref": "main"
+}

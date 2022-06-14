@@ -38,12 +38,10 @@ namespace Client.Examples
     public static async Task Main(string[] args)
     {
       // create zeebe client
-      var client =
-          CamundaCloudClientBuilder.Builder()
-              .FromEnv()
-              .UseLoggerFactory(new NLogLoggerFactory())
-              .Build();
-
+      var client = CamundaCloudClientBuilder.Builder()
+      .FromEnv()
+      .UseLoggerFactory(new NLogLoggerFactory())
+      .Build();
       // open job worker
       using (var signal = new EventWaitHandle(false, EventResetMode.AutoReset))
       {
@@ -58,7 +56,8 @@ namespace Client.Examples
             .PollingTimeout(TimeSpan.FromSeconds(30))
             .HandlerThreads(8)
             .Open();
-
+        Logger.Info("Starting Camunda Cloud Zeebe ScriptWorker");
+        Logger.Info("===================================");
         // blocks main thread, so that worker can run
         signal.WaitOne();
       }

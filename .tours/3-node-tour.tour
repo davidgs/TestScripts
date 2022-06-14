@@ -1,0 +1,57 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Node Tour",
+  "nextTour": "dot-net.tour",
+  "steps": [
+    {
+      "file": "NodeJS/README.md",
+      "description": "These are the basic commands to run this Task Worker, but we will get back to this after we go through the code. ",
+      "line": 11
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "As in all the examples, we need to make sure that we import the proper library to use. For NodeJS, it is called `zeebe-node`.",
+      "line": 17
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "We will be executing tasks call `DoMathTask` so we are defining that as a global constant. Defining the Task Name this way makes it easier to change the Task Name later if you want to repurpose this Task Worker to another process. ",
+      "line": 20
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "We have a `DEBUG` constant here so that we can see the output if we want. In a production environment you likely would not use such output.",
+      "line": 22
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "Using the `zeebe-node` library we create a new ZeeBe Client. The client relies on the following environment variables to self-configure properly:\n\n- ZEEBE_ADDRESS\n- ZEEBE_CLIENT_ID\n- ZEEBE_CLIENT_SECRET\n\nSo be sure that you have set those properly before attempting to run the example.",
+      "line": 29
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "This is where we create the worker to handle the incoming jobs. Only jobs with the name matching `PROC_NAME` will be executed. ",
+      "line": 31
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "It is possible that the variables we want to access were not sent to the process. In this case, those variables would be `undefined`. Since we require them, we will check for that, and if they don't exist we will create them so that the process can continue.",
+      "line": 35
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "This is the only real work we do here. We add the `count` variable and the `add` variable together. We store that result back into the `count` job variable so that we can return it to the Camunda calling process. ",
+      "line": 44
+    },
+    {
+      "file": "NodeJS/test-script.js",
+      "description": "This will complete the job and return the variables to the Camunda Platform 8 process. \n\n",
+      "line": 48
+    },
+    {
+      "file": "NodeJS/README.md",
+      "description": "Now that you've walked through the code, and set the appropriate environment variables, you can run the Task Worker and see the results.\n\n> **Note:** Don't forget to set the environment variables based on the configuration you got when setting up your Camunda Platform 8 cluster.\n> - ZEEBE_ADDRESS\n> - ZEEBE_CLIENT_ID\n> - ZEEBE_CLIENT_SECRET \n\nThen you can:\n\n>> cd NodeJS\n\n>> npm install\n\n>> node test-script",
+      "line": 13
+    }
+  ]
+}
