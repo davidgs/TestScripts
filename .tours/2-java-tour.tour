@@ -1,0 +1,97 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Java Tour",
+  "nextTour": "node-tour.tour",
+  "steps": [
+    {
+      "file": "Java/README.md",
+      "description": "In this tour we will step through the Java process for handling a Task Worker for Camunda Platform 8. \n\nIf all you're interested in is a high-level overview, this [README](Java/README.md) should suffice. \n\nWe will next step through all the Java code to examine how it all fits together and works to execute a task for Camunda Platform 8.",
+      "line": 3
+    },
+    {
+      "file": "Java/pom.xml",
+      "description": "It's worth noting that this Java process is a complete Maven project, so you will, of course, need a working `pom.xml` file. \n\nThe file provided in this repository works just fine. ",
+      "line": 12
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "We of course have to import all the required libraries. For this exercise, these are the only Zeebe libraries we will need.",
+      "line": 18
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "As in all the other examples, we will define the Task ID that we will be listening for, and executing. ",
+      "line": 30
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "We also have a `DEBUG` value to control output. ",
+      "line": 31
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "We will be using a Logger to format the output from the process. ",
+      "line": 32
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "The very first thing we need to do is contstruct a proper Client to connect to the Zeebe broker. \n\nWe have a `ZeebeCLientFactory` to handle that for us.",
+      "line": 37
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/ZeebeClientFactory.java",
+      "description": "The `ZeebeClientFactory` handles building the client for us.",
+      "line": 5
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/ZeebeClientFactory.java",
+      "description": "We need to define all the proper credentials for our Camunda Platform 8 instance in order to properly connect. \n\nThese **must** be defined here, as it will not pick them up from the environment variables. ",
+      "line": 7
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/ZeebeClientFactory.java",
+      "description": "Here is where we use all of our credentials and settings to create the client that we will use to connect to the Camunda Platform 8 Zeebe Broker. \n\nIf you get errors about your connection, this is the place to come look first in order to make sure you can properly connect.",
+      "line": 13
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "In order to ensure that we are actually connected, we will send a `TopologyRequest` to the broker. We are not going to do anything with the returned values of the topology request, but making it is the best way to ensure that we have actually authenticated and connected to the broker.",
+      "line": 38
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "Now that we know we are properly connected to the broker, we can register our `JobWorker` which will listen for incoming jobs. \n\nWe are listening for `PROC_NAME` jobs, as we defined above. \n\nWe also pass the method that will be called when a new job comes in. In this case, we have a `MathHandler` object that will deal with the incoming job.",
+      "line": 40
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "This is our `MathHandler` class that implements `JobHandler` so that we can handle the job.",
+      "line": 93
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "This is the action part of the class where we actually *handle* the job. In order to do that, we will need the `client` and the `job` that we are to handle.",
+      "line": 97
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "I have created another class to actually handle the variables and doing the actual maths. This is not strictly necessary, but it made the code easier to separate into proper parts.",
+      "line": 99
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "The `SimpleMath` class defines the actual variables that we will be looking for in the incoming Job.\n\nThose variables are `count` and `add`.",
+      "line": 69
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "The class has a standard set of getters and setters for the 2 fields.",
+      "line": 72
+    },
+    {
+      "file": "Java/src/main/java/io/camunda/testscript/TestScript.java",
+      "description": "This is the only method that is doing anything. It simply adds the two fields together and returns the result.",
+      "line": 88
+    }
+  ]
+}

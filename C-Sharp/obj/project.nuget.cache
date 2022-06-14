@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "tDA/bzfubjbjJnAdNJATaxrvIPp6q+1YttdvMUVhhVmrndApr2r2IHWlzUO6HZR/lSEeeLhDakqVfwdeVEPlLA==",
+  "success": true,
+  "projectFilePath": "/Users/davidgs/github.com/TestScripts/C-Sharp/csharp.csproj",
+  "expectedPackageFiles": [
+    "/Users/davidgs/.nuget/packages/google.apis/1.46.0/google.apis.1.46.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/google.apis.auth/1.46.0/google.apis.auth.1.46.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/google.apis.core/1.46.0/google.apis.core.1.46.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/google.protobuf/3.16.0/google.protobuf.3.16.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/grpc/2.37.1/grpc.2.37.1.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/grpc.auth/2.37.1/grpc.auth.2.37.1.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/grpc.core/2.37.1/grpc.core.2.37.1.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/grpc.core.api/2.37.1/grpc.core.api.2.37.1.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.configuration.abstractions/5.0.0/microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.dependencyinjection/5.0.0/microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/5.0.0/microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.logging/5.0.0/microsoft.extensions.logging.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.logging.abstractions/5.0.0/microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.options/5.0.0/microsoft.extensions.options.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/microsoft.extensions.primitives/5.0.0/microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/nlog/4.7.9/nlog.4.7.9.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/nlog.extensions.logging/1.7.2/nlog.extensions.logging.1.7.2.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/system.threading.tasks.dataflow/5.0.0/system.threading.tasks.dataflow.5.0.0.nupkg.sha512",
+    "/Users/davidgs/.nuget/packages/zb-client/1.0.0/zb-client.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -11,6 +11,7 @@ This is just like the other workers, except it's written in NodeJS.
 ## Running
 
     $ cd NodeJS
+    $ npm install
     $ node test-script
 
 ## Output

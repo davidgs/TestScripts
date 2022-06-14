@@ -1,0 +1,138 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "GoLang Tour",
+  "nextTour": "java-tour.tour",
+  "steps": [
+    {
+      "file": "Golang/README.md",
+      "description": "Most of the information you will need is in this README file, but next we will step through the Go code in detail so that you can understand what's happening. ",
+      "line": 3
+    },
+    {
+      "file": "Golang/README.md",
+      "description": "To simply run the project without doing anything else, \n\n>> git clone https://github.com/davidgs/test-scripts\n\n>> cd test-scripts/Golang\n\n>> go mod tidy\n\n>> go build\n\n>> go run\n\nNext we will walk through the code itself.",
+      "line": 7
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "We are going to use a logging facility.",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 51,
+          "character": 12
+        },
+        "end": {
+          "line": 51,
+          "character": 47
+        }
+      }
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "And we're going to need the actual ZeeBe Go library, of course.",
+      "line": 26
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "This is the actual name of the User Tasks that we will be executing. This name should be *exactly* the same as the name you define in your `test-script-worker.bpmn` file. \n\nIf you use the provided file in this repository, you don't need to change anything for this to work.",
+      "line": 31
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "For now, we are going to have `DEBUG` set to `true` so that we can see the process execute but for a production deployment you'd want to set this to `false`.",
+      "line": 34
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "This is just an empty, dummy struct for the entire application.",
+      "line": 37
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "This is a `struct` for the JSON variables we will be using. They may, or may not, be sent from the process engine.",
+      "line": 41
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "We are going to use a simple channel for communication.",
+      "line": 46
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "These are some convenience methods that will print out (or not) our debug statements.",
+      "line": 50
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "This is the first convenience debug printer. It works just like `printf()` in that you can send it a formatting string, and a list of variables to print. \n\n```go\nfmt.Printf(\"This is the message: %s\", message)\n```",
+      "line": 130
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "In order to properly initialize ourselves, we will look to see if the environment variable `ZEEBE_ADDRESS` is defined. If it's not, we will assume that the other environment variables are also not set and exit. ",
+      "line": 61
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "If we have gotten this far, the proper environment variables have been set, so we can create a proper Zeebe Client. \n\n> **Note:** Remember, you need to set the environment variables `ZEEBE_ADDRESS`, `ZEEBE_CLIENT_ID` and `ZEEBE_CLIENT_SECRET`, which you can get from your [Camunda Platform 8](https://accounts.cloud.camunda.io/signup?utm_medium=referral&utm_source=github&utm_content=devrel-team-post&utm_term=david_simmons) credentials page.\n",
+      "line": 65
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "Now that we have a proper Zeebe Client, we create a new `JobWorker` that will wait for jobs to do. We define the `JobType` using the constant we defined at the top of the file.\n\nWe also define the `handler` function that will actually do the work once a job comes in.",
+      "line": 74
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "We will use the channel we created earlier so that the process will run forever and just wait for jobs. ",
+      "line": 77
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "This is the handler function where the actual work gets done. It is called by the `JobWorker` when new jobs come in, and it receives a reference to the `client` as well as the current `job`.",
+      "line": 83
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "Each job hs a unique `key` identifier. We aren't using it for anything here other than to illustrate how to get it from the job. ",
+      "line": 85
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "`failJob` is a convenience method for handling a job failure so we don't have to replicate the code.",
+      "line": 89
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "The `failJob` convenience method returns the job to the Camunda Process that sent it to us, notifying it that we failed to complete the job. \n\nThe Camunda Process has a set number of times that it will retry the job, so we deduct 1 from that counter before sending it back. \n\nIf we fail to even fail the job, all hope is lost, so we exit with a panic. ",
+      "line": 123
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "We will attempt to get the variables we expect (in this case `count` and `add`) from the job so that we can act on them.\n\nGo is nice enough to initialize them to 0 if they don't already exist, so there's no need to do much error checking here.",
+      "line": 93
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "We'll do the simple math we are designed to do -- add `count` and `add` together -- and we will store the result right back into the `count` variable. ",
+      "line": 101
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "Next, we create a `CompleteJobCommand` using the `jobKey` so that the Camunda Process knows that we completed that specific job. We will also send back the new copy of the job variables with the updated `count` so we make sure to convert that from its object form to the form that the Zeebe engine is expecting. ",
+      "line": 103
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "Finally, we send that completed job object back to the engine with it's updated variables. We will do this in the background so as not to block on this operation.",
+      "line": 110
+    },
+    {
+      "file": "Golang/test-script.go",
+      "description": "We have successfully completed that job and we are done until the next job comes in. ",
+      "line": 115
+    }
+  ],
+  "ref": "main"
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Script Tasks",
+  "isPrimary": true,
+  "nextTour": "golang-tour.tour",
+  "steps": [
+    {
+      "file": "README.md",
+      "description": "Since it can be easier to see how things work if you're able to compare languages (sometimes) this repository will walk through 4 examples in 4 languages. Each has a README.",
+      "line": 11
+    },
+    {
+      "file": "Golang/README.md",
+      "description": "Here is the README for the Golang version of the script.",
+      "line": 3
+    },
+    {
+      "file": "Java/README.md",
+      "description": "And here is the Readme for the Java version.\n\nGolang and Java are the only 2 officially supported languages.",
+      "line": 3
+    },
+    {
+      "file": "C-Sharp/README.md",
+      "description": "We have provided a version in .Net (C#) which is one of the community-supported libraries.",
+      "line": 3
+    },
+    {
+      "file": "NodeJS/README.md",
+      "description": "NodeJS is another community-supported library. There are other community supported languages which you can find here: ",
+      "line": 3
+    },
+    {
+      "file": "README.md",
+      "description": "There are additional tours for each example where you can walk through the code and understand what is happening at each step.",
+      "line": 44
+    }
+  ],
+  "ref": "main"
+}
