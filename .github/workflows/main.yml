@@ -10,9 +10,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: 'Checkout source code'
-              uses: actions/checkout@v2
+              uses: actions/checkout@v2.4.2
+              with:
+                repository: "TestScripts"
 
             - name: 'Watch CodeTour changes'
-              uses: pozil/codetour-watch@v1.6.0
+              uses: pozil/codetour-watch@v1.6.1
               with:
                   repo-token: ${{ secrets.ACTIONS_SECRET }}
+
