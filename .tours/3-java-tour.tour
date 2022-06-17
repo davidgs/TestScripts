@@ -1,7 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Java Tour",
-  "nextTour": "node-tour.tour",
+  "title": "3: Java",
+  "nextTour": "Node",
   "steps": [
     {
       "file": "Java/README.md",

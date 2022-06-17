@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Dot Net",
+  "title": "5: DotNet",
   "steps": [
     {
       "file": "C-Sharp/README.md",

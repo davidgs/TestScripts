@@ -1,8 +1,8 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Script Tasks",
+  "title": "1: Script Tasks",
   "isPrimary": true,
-  "nextTour": "golang-tour.tour",
+  "nextTour": "GoLang",
   "steps": [
     {
       "file": "README.md",
