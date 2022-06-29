@@ -23,28 +23,31 @@ const DEBUG = true;
 
 if (DEBUG) {
   console.log("Starting Camunda Cloud Zeebe ScriptWorker")
+  console.log(`Handling jobs of type ${PROC_NAME}`)
   console.log("===================================")
-}
-; (async () => {
-  const zbc = new ZBClient();
+} 
 
-  zbc.createWorker(PROC_NAME, (job) => {
-      if (DEBUG) {
-        console.log("Handling job: ", job.key)
-      }
-      if (job.variables.count === undefined) {
-        job.variables.count = 0
-      }
-      if (job.variables.add === undefined) {
-        job.variables.add = 0
-      }
-      if (DEBUG) {
-        console.log("Incoming variables: ", job.variables)
-      }
-      job.variables.count = job.variables.count + job.variables.add
-      if (DEBUG) {
-        console.log("Job Complete: ", job.variables)
-      }
-      job.complete(job.variables)
+const zbc = new ZBClient();
+
+zbc.createWorker({
+  taskType: PROC_NAME, 
+  taskHandler: job => {
+    if (DEBUG) {
+      console.log("Handling job: ", job.key)
+      console.log("Incoming variables: ", job.variables)
+    }
+
+    const count = job.variables.count ?? 0
+    const add = job.variables ?? 0
+    const newCount = count + add
+
+    if (DEBUG) {
+      console.log("Job Complete: ", {...job.variables, add, count: newCount})
+    }
+
+    job.complete({ 
+      add,
+      count: newCount
     })
-  })()
+  }
+})

@@ -4,7 +4,7 @@
   "description": "Camunda Platform 8 Script Workers",
   "main": "test-script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Chuck Norris tests in production!\" && exit 0"
   },
   "repository": {
     "type": "git",
