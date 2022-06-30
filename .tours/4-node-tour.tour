@@ -1,7 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Node Tour",
-  "nextTour": "dot-net.tour",
+  "title": "4: Node",
+  "nextTour": "DotNet",
   "steps": [
     {
       "file": "NodeJS/README.md",

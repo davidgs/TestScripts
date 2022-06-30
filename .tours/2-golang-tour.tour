@@ -1,7 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "GoLang Tour",
-  "nextTour": "java-tour.tour",
+  "title": "2: GoLang",
+  "nextTour": "Java",
   "steps": [
     {
       "file": "Golang/README.md",
