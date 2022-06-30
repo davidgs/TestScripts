@@ -35,7 +35,7 @@ namespace Client.Examples
 
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    public static async Task Main(string[] args)
+    public static Task Main(string[] args)
     {
       // create zeebe client
       var client = CamundaCloudClientBuilder.Builder()
@@ -61,6 +61,7 @@ namespace Client.Examples
         // blocks main thread, so that worker can run
         signal.WaitOne();
       }
+      return Task.CompletedTask;
     }
 
     private static async Task HandleJob(IJobClient jobClient, IJob job)
